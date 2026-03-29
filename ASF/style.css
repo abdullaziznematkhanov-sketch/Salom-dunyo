@@ -1,0 +1,179 @@
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+h1,
+h3 {
+    color: #2c3e50;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.stat-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-weight: bold;
+}
+.profit {
+    color: #27ae60;
+}
+.debt {
+    color: #e74c3c;
+}
+
+.form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+input,
+select,
+button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+button {
+    grid-column: span 2;
+    background: #2980b9;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+}
+button:hover {
+    background: #3498db;
+}
+
+.table-container {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+th {
+    background-color: #f8f9fa;
+}
+.btn-delete {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+/* --- MEDIA QUERIES (Moslashuvchanlik) --- */
+
+/* 1. Planshetlar va kichik noutbuklar uchun (992px gacha) */
+@media (max-width: 992px) {
+    .container {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr; /* 4 ta kartani 2 tadan 2 qator qiladi */
+    }
+}
+
+/* 2. Telefonlar uchun (600px gacha) */
+@media (max-width: 600px) {
+    body {
+        padding: 10px; /* Chetki bo'shliqni kamaytiramiz */
+    }
+
+    h1 {
+        font-size: 20px; /* Sarlavha biroz kichrayadi */
+    }
+
+    /* Statistika kartalari bittadan qatorga tushadi */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    /* Forma elementlari ustma-ust tushadi */
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    input,
+    select,
+    button {
+        grid-column: span 1; /* Hamma element to'liq qatorni egallaydi */
+        font-size: 14px;
+        padding: 12px; /* Bosishga qulay bo'lishi uchun */
+    }
+
+    /* Jadval qismi */
+    .table-container {
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    table {
+        display: block; /* Jadvalni blok ko'rinishiga keltiramiz */
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 12px; /* Harflar kichrayadi */
+    }
+
+    /* O'chirish tugmasi telefonda kattaroq bo'lishi kerak */
+    .btn-delete {
+        width: 100%;
+        padding: 8px;
+        margin-top: 2px;
+    }
+}
+
+/* 3. Juda kichik telefonlar uchun (350px gacha) */
+@media (max-width: 350px) {
+    .stat-card {
+        font-size: 13px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+}

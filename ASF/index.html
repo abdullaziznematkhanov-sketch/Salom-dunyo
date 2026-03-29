@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="uz">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dekor Plast - Savdo Hisobi</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>🏗️ Dekor Plast Savdo Tizimi</h1>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    Umumiy savdo: <span id="total-sales">0</span> so'm
+                </div>
+                <div class="stat-card profit">
+                    Sof foyda: <span id="total-profit">0</span> so'm
+                </div>
+                <div class="stat-card debt">
+                    Nasiya: <span id="total-debt">0</span> so'm
+                </div>
+                <div class="stat-card">
+                    Sotuvlar soni: <span id="sales-count">0</span> ta
+                </div>
+            </div>
+
+            <div class="form-container">
+                <h3>Yangi sotuv qo'shish</h3>
+                <form id="sale-form">
+                    <input
+                        type="text"
+                        id="customer-name"
+                        placeholder="Mijoz ismi"
+                        required
+                    />
+                    <input
+                        type="text"
+                        id="product-type"
+                        placeholder="Tovar turi (Masalan: Dekor plast)"
+                        required
+                    />
+                    <input
+                        type="number"
+                        id="buy-price"
+                        placeholder="Olingan narxi (tannarxi)"
+                        required
+                    />
+                    <input
+                        type="number"
+                        id="sell-price"
+                        placeholder="Sotilgan narxi"
+                        required
+                    />
+                    <select id="payment-status">
+                        <option value="paid">To'landi</option>
+                        <option value="debt">Nasiya</option>
+                    </select>
+                    <button type="submit">Sotuvni saqlash</button>
+                </form>
+            </div>
+
+            <div class="table-container">
+                <h3>Bugungi savdo tarixi</h3>
+                <table id="sales-table">
+                    <thead>
+                        <tr>
+                            <th>Sana/Vaqt</th>
+                            <th>Mijoz</th>
+                            <th>Tovar</th>
+                            <th>Sotuv</th>
+                            <th>Foyda</th>
+                            <th>Holati</th>
+                            <th>Amal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sales-body"></tbody>
+                </table>
+            </div>
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>

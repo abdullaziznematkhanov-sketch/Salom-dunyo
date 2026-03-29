@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="uz">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dekor Plast Pro</title>
+        <link rel="stylesheet" href="tarix.css" />
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar">
+                <h2 class="logo">🏗️ Dekor Plast</h2>
+                <div class="nav-links">
+                    <a
+                        href="#"
+                        onclick="showPage('main')"
+                        id="link-main"
+                        class="active"
+                        >Asosiy</a
+                    >
+                    <a href="#" onclick="showPage('history')" id="link-history"
+                        >Sotuvlar Tarixi</a
+                    >
+                </div>
+            </nav>
+
+            <div id="page-main" class="page">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        Bugungi savdo: <br /><span id="total-sales">0</span>
+                        so'm
+                    </div>
+                    <div class="stat-card profit">
+                        Bugungi foyda: <br /><span id="total-profit">0</span>
+                        so'm
+                    </div>
+                    <div class="stat-card debt">
+                        Umumiy Nasiya: <br /><span id="total-debt">0</span> so'm
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h3>Yangi sotuv kiritish</h3>
+                    <form id="sale-form">
+                        <input
+                            type="text"
+                            id="customer-name"
+                            placeholder="Mijoz ismi"
+                            required
+                        />
+                        <input
+                            type="text"
+                            id="product-type"
+                            placeholder="Tovar turi"
+                            required
+                        />
+                        <input
+                            type="number"
+                            id="buy-price"
+                            placeholder="Tannarxi (so'm)"
+                            required
+                        />
+                        <input
+                            type="number"
+                            id="sell-price"
+                            placeholder="Sotilish narxi (so'm)"
+                            required
+                        />
+                        <select id="payment-status">
+                            <option value="paid">
+                                To'landi (Naqd/Plastik)
+                            </option>
+                            <option value="debt">Nasiya</option>
+                        </select>
+                        <button type="submit" class="btn-submit">
+                            Sotuvni yakunlash
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="page-history" class="page" style="display: none">
+                <div class="filter-bar">
+                    <input type="date" id="filter-date" />
+                    <button onclick="filterByDate()" class="btn-filter">
+                        Saralash
+                    </button>
+                    <button onclick="resetFilter()" class="btn-reset">
+                        Hammasini ko'rsatish
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table id="sales-table">
+                        <thead>
+                            <tr>
+                                <th>Sana</th>
+                                <th>Mijoz</th>
+                                <th>Tovar</th>
+                                <th>Sotuv</th>
+                                <th>Foyda</th>
+                                <th>Holat</th>
+                                <th>Amal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script src="tarix.js"></script>
+    </body>
+</html>
