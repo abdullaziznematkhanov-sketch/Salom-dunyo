@@ -3,79 +3,126 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dekor Plast - Savdo Hisobi</title>
+        <title>Dekor Plast Savdo</title>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <div class="container">
-            <h1>🏗️ Dekor Plast Savdo Tizimi</h1>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    Umumiy savdo: <span id="total-sales">0</span> so'm
-                </div>
-                <div class="stat-card profit">
-                    Sof foyda: <span id="total-profit">0</span> so'm
-                </div>
-                <div class="stat-card debt">
-                    Nasiya: <span id="total-debt">0</span> so'm
-                </div>
-                <div class="stat-card">
-                    Sotuvlar soni: <span id="sales-count">0</span> ta
+            <div class="nav-bar">
+                <h2 style="margin: 0; color: #fff">🏗️ Dekor Plast</h2>
+                <div class="nav-links">
+                    <button
+                        onclick="showPage('main')"
+                        id="btn-main"
+                        class="active-nav"
+                    >
+                        Asosiy
+                    </button>
+                    <button onclick="showPage('history')" id="btn-history">
+                        Tarix
+                    </button>
                 </div>
             </div>
 
-            <div class="form-container">
-                <h3>Yangi sotuv qo'shish</h3>
-                <form id="sale-form">
-                    <input
-                        type="text"
-                        id="customer-name"
-                        placeholder="Mijoz ismi"
-                        required
-                    />
-                    <input
-                        type="text"
-                        id="product-type"
-                        placeholder="Tovar turi (Masalan: Dekor plast)"
-                        required
-                    />
-                    <input
-                        type="number"
-                        id="buy-price"
-                        placeholder="Olingan narxi (tannarxi)"
-                        required
-                    />
-                    <input
-                        type="number"
-                        id="sell-price"
-                        placeholder="Sotilgan narxi"
-                        required
-                    />
-                    <select id="payment-status">
-                        <option value="paid">To'landi</option>
-                        <option value="debt">Nasiya</option>
-                    </select>
-                    <button type="submit">Sotuvni saqlash</button>
-                </form>
+            <div id="page-main">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        Bugungi Savdo: <br /><span id="total-sales">0</span>
+                        so'm
+                    </div>
+                    <div class="stat-card profit">
+                        Bugungi Foyda: <br /><span id="total-profit">0</span>
+                        so'm
+                    </div>
+                    <div class="stat-card items">
+                        Bugungi Dona: <br /><span id="total-items">0</span> dona
+                    </div>
+                    <div class="stat-card debt">
+                        Umumiy Nasiya: <br /><span id="total-debt">0</span> so'm
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h3>Yangi sotuv qo'shish</h3>
+                    <form id="sale-form">
+                        <input
+                            type="text"
+                            id="customer-name"
+                            placeholder="Mijoz ismi"
+                            required
+                        />
+                        <input
+                            type="text"
+                            id="product-type"
+                            placeholder="Tovar turi"
+                            required
+                        />
+                        <input
+                            type="number"
+                            id="product-qty"
+                            placeholder="Soni (shtuk)"
+                            required
+                        />
+                        <input
+                            type="number"
+                            id="buy-price"
+                            placeholder="Tannarxi (1 dona)"
+                            required
+                        />
+                        <input
+                            type="number"
+                            id="sell-price"
+                            placeholder="Sotish narxi (1 dona)"
+                            required
+                        />
+                        <select id="payment-status">
+                            <option value="paid">To'landi</option>
+                            <option value="debt">Nasiya</option>
+                        </select>
+                        <button type="submit" class="btn-save">
+                            Sotuvni saqlash
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <div class="table-container">
-                <h3>Bugungi savdo tarixi</h3>
-                <table id="sales-table">
-                    <thead>
-                        <tr>
-                            <th>Sana/Vaqt</th>
-                            <th>Mijoz</th>
-                            <th>Tovar</th>
-                            <th>Sotuv</th>
-                            <th>Foyda</th>
-                            <th>Holati</th>
-                            <th>Amal</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sales-body"></tbody>
-                </table>
+            <div id="page-history" style="display: none">
+                <div class="table-container">
+                    <div
+                        style="
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                        "
+                    >
+                        <h3>Sotuvlar tarixi</h3>
+                        <input
+                            type="date"
+                            id="filter-date"
+                            onchange="filterByDate()"
+                            style="
+                                padding: 5px;
+                                border-radius: 5px;
+                                border: 1px solid #ddd;
+                            "
+                        />
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sana</th>
+                                <th>Mijoz</th>
+                                <th>Tovar</th>
+                                <th>Soni</th>
+                                <th>Summa</th>
+                                <th>Foyda</th>
+                                <th>Holat</th>
+                                <th>Amal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales-body"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <script src="app.js"></script>
