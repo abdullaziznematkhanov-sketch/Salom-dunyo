@@ -131,3 +131,53 @@ function filterByDate() {
 
 // Boshlang'ich yuklash
 renderData();
+
+// 1. Markaziy Bank API orqali real kursni olish funksiyasi
+async function getDollarRate() {
+    try {
+        const response = await fetch(
+            "https://cbu.uz/uz/arkhiv-kursov-valyut/json/",
+        );
+        const data = await response.json();
+        // Dollarning so'mdagi qiymatini topamiz (USD kodi: 840)
+        const usdData = data.find((item) => item.Ccy === "USD");
+        return parseFloat(usdData.Rate);
+    } catch (error) {
+        console.error("Kursni olishda xatolik:", error);
+        return 12800; // API ishlamasa, oxirgi ma'lum bo'lgan kurs
+    }
+}
+
+// 2. Narxni hisoblash funksiyasi
+async function calculatePrice(amount, currency) {
+    if (currency.toUpperCase() === "UZS") {
+        return amount; // So'mda bo'lsa o'zini qaytaramiz
+    }
+
+    if (currency.toUpperCase() === "USD") {
+        const currentRate = await getDollarRate();
+        const totalInSum = amount * currentRate;
+        return totalInSum;
+    }
+}
+
+// --- ISHLATIB KO'RAMIZ ---
+async function main() {
+    const tovar1_narxi = 100; // 100 dollar
+    const tovar2_narxi = 500000; // 500,000 so'm
+
+    const natija1 = await calculatePrice(tovar1_narxi, "USD");
+    const natija2 = await calculatePrice(tovar2_narxi, "UZS");
+
+    console.log(
+        `100 dollarlik tovar: ${natija1.toLocaleString()} so'm bo'ldi.`,
+    );
+    console.log(`So'mdagi tovar: ${natija2.toLocaleString()} so'm.`);
+}
+
+main();
+
+const rate = await getDollarRate();
+const hisobot = tovarlar.map((t) =>
+    t.valyuta === "USD" ? t.narx * rate : t.narx,
+);
