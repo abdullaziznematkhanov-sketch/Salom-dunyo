@@ -3,128 +3,184 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dekor Plast Savdo</title>
+        <title>Dekor Plast - Kassa</title>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <div class="header">
+            <div>
+                <h2>🏗️ Dekor Plast</h2>
+                <div class="kurs-info" id="kurs-korsatgich">
+                    Kurs yuklanmoqda...
+                </div>
+            </div>
+            <div class="header-buttons">
+                <button
+                    class="btn-asosiy"
+                    onclick="oynaniUzgartirish('asosiy')"
+                >
+                    Asosiy
+                </button>
+                <button class="btn-tarix" onclick="oynaniUzgartirish('tarix')">
+                    Tarix
+                </button>
+            </div>
+        </div>
+
         <div class="container">
-            <div class="nav-bar">
-                <h2 style="margin: 0; color: #fff">🏗️ Dekor Plast</h2>
-                <div class="nav-links">
-                    <button
-                        onclick="showPage('main')"
-                        id="btn-main"
-                        class="active-nav"
-                    >
-                        Asosiy
-                    </button>
-                    <button onclick="showPage('history')" id="btn-history">
-                        Tarix
-                    </button>
-                </div>
-            </div>
-
-            <div id="page-main">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        Bugungi Savdo: <br /><span id="total-sales">0</span>
-                        so'm
+            <div id="asosiy-oyna">
+                <div class="dashboard">
+                    <div class="card">
+                        <p>Bugungi Umumiy Savdo:</p>
+                        <h3 id="bugungi-savdo" class="text-blue">0.00 $</h3>
                     </div>
-                    <div class="stat-card profit">
-                        Bugungi Foyda: <br /><span id="total-profit">0</span>
-                        so'm
-                    </div>
-                    <div class="stat-card items">
-                        Bugungi Dona: <br /><span id="total-items">0</span> dona
-                    </div>
-                    <div class="stat-card debt">
-                        Umumiy Nasiya: <br /><span id="total-debt">0</span> so'm
+                    <div class="card">
+                        <p>Umumiy Nasiya:</p>
+                        <h3 id="umumiy-nasiya" class="text-red">0.00 $</h3>
                     </div>
                 </div>
 
-                <div class="form-container">
+                <div class="form-section">
                     <h3>Yangi sotuv qo'shish</h3>
-                    <form id="sale-form">
-                        <input
-                            type="text"
-                            id="customer-name"
-                            placeholder="Mijoz ismi"
-                            required
-                        />
-                        <input
-                            type="text"
-                            id="product-type"
-                            placeholder="Tovar turi"
-                            required
-                        />
-                        <input
-                            type="number"
-                            id="product-qty"
-                            placeholder="Soni (shtuk)"
-                            required
-                        />
-                        <input
-                            type="number"
-                            id="buy-price"
-                            placeholder="Tannarxi (1 dona)"
-                            required
-                        />
-                        <input
-                            type="number"
-                            id="sell-price"
-                            placeholder="Sotish narxi (1 dona)"
-                            required
-                        />
-                        <select id="payment-status">
-                            <option value="paid">To'landi</option>
-                            <option value="debt">Nasiya</option>
-                        </select>
-                        <button type="submit" class="btn-save">
-                            Sotuvni saqlash
-                        </button>
-                    </form>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tovar turi</label>
+                            <select id="tovar-turi" class="form-control">
+                                <option value="Brliand 0.30">
+                                    Brliand 0.30
+                                </option>
+                                <option value="Brliand 0.40">
+                                    Brliand 0.40
+                                </option>
+                                <option value="Brliand 0.25">
+                                    Brliand 0.25
+                                </option>
+                                <option value="Brliand Panel">
+                                    Brliand Panel
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Uzunligi (metr)</label>
+                            <select id="tovar-metri" class="form-control">
+                                <option value="4 metr">4 metr</option>
+                                <option value="3 metr">3 metr</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Qalinligi</label>
+                            <select id="tovar-qalinligi" class="form-control">
+                                <option value="6mm">6 mm</option>
+                                <option value="9mm">9 mm</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Mijoz ismi</label>
+                            <input
+                                type="text"
+                                id="mijoz-ismi"
+                                class="form-control"
+                                placeholder="Mijoz ismi"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Soni (dona)</label>
+                            <input
+                                type="number"
+                                id="tovar-soni"
+                                class="form-control"
+                                placeholder="Masalan: 10"
+                                min="1"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Bitta tovar narxi</label>
+                            <div style="display: flex; gap: 5px">
+                                <input
+                                    type="number"
+                                    id="tovar-narxi"
+                                    class="form-control"
+                                    step="0.01"
+                                    min="0"
+                                    placeholder="0.00"
+                                />
+                                <select
+                                    id="valyuta-turi"
+                                    class="form-control"
+                                    style="width: 80px"
+                                >
+                                    <option value="USD">USD ($)</option>
+                                    <option value="UZS">UZS (so'm)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>To'lov turi</label>
+                            <select id="tolov-turi" class="form-control">
+                                <option value="Naqd">Naqd (Savdo)</option>
+                                <option value="Nasiya">Nasiya</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn-submit" onclick="sotuvniQushish()">
+                        Sotuvni qo'shish
+                    </button>
                 </div>
             </div>
 
-            <div id="page-history" style="display: none">
-                <div class="table-container">
-                    <div
-                        style="
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                        "
-                    >
-                        <h3>Sotuvlar tarixi</h3>
-                        <input
-                            type="date"
-                            id="filter-date"
-                            onchange="filterByDate()"
-                            style="
-                                padding: 5px;
-                                border-radius: 5px;
-                                border: 1px solid #ddd;
-                            "
-                        />
-                    </div>
+            <div id="tarix-oyna" class="hidden">
+                <div class="form-section">
+                    <h3>Savdo Tarixi</h3>
                     <table>
+                        <div class="form-row" style="margin-bottom: 20px">
+                            <div class="form-group">
+                                <label>Sana bo'yicha saralash:</label>
+                                <input
+                                    type="date"
+                                    id="qidiruv-sanasi"
+                                    class="form-control"
+                                    onchange="tarixniChizish()"
+                                />
+                            </div>
+                            <div
+                                class="form-group"
+                                style="display: flex; align-items: flex-end"
+                            >
+                                <button
+                                    class="btn-tarix"
+                                    onclick="tarixniTozalash()"
+                                >
+                                    Filtrni bekor qilish
+                                </button>
+                            </div>
+                        </div>
                         <thead>
                             <tr>
-                                <th>Sana</th>
+                                <th>Vaqt</th>
                                 <th>Mijoz</th>
-                                <th>Tovar</th>
+                                <th>Tovar (Turi / Metr / Qalinlik)</th>
                                 <th>Soni</th>
-                                <th>Summa</th>
-                                <th>Foyda</th>
-                                <th>Holat</th>
-                                <th>Amal</th>
+                                <th>Narxi (Asl)</th>
+                                <th>Jami ($)</th>
+                                <th>Holati</th>
                             </tr>
                         </thead>
-                        <tbody id="sales-body"></tbody>
+                        <tbody id="tarix-jadvali"></tbody>
                     </table>
                 </div>
             </div>
         </div>
+
         <script src="app.js"></script>
     </body>
 </html>
